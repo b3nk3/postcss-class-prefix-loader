@@ -35,7 +35,7 @@ PostCssWrapper.prototype.apply = function(compiler) {
   const file = this.file;
   const container = this.container;
 
-  compiler.plugin('emit', function(compilation, callback) {
+  compiler.hooks.emit.tap('PostCssWrapper', function(compilation, callback) {
     const assets = compilation.assets;
     if (!_.has(file, assets)) return callback();
     const source = assets[file].source();
